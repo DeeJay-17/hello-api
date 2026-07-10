@@ -26,15 +26,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Normalize repository name
-        run: |
-          echo "REPO_LOWER=$(echo \"$GITHUB_REPOSITORY\" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: "ghcr.io/${{ env.REPO_LOWER }}"
+          images: ghcr.io/${{ github.repository }}
 
       - name: Build and Push
         uses: docker/build-push-action@v6
@@ -42,5 +38,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ env.REPO_LOWER }}:latest
-            ghcr.io/${{ env.REPO_LOWER }}:${{ github.sha }}
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
