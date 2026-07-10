@@ -1,6 +1,6 @@
 services:
   hello-api:
-    image: ghcr.io/DeeJay-17/hello-api:3b5d9e7
+    image: ghcr.io/deejay-17/hello-api:3b5d9e7
     container_name: hello-api
     restart: unless-stopped
 
