@@ -34,7 +34,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ env.REPO_LOWER }}
+          images: |
+            ghcr.io/${{ env.REPO_LOWER }}
 
       - name: Build and Push
         uses: docker/build-push-action@v6
